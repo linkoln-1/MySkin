@@ -8,30 +8,41 @@ import {
   } from 'react-native';
 
 
-const HomePageOption = () => {
+const HomePageOption = ({navigation}) => {
+  const LoadingLogIn = () => {
+    navigation.navigate("LogIn")
+  }
+  const LoadingSignIn = () => {
+    navigation.navigate("SignIn")
+  }
+
     return(
   <View style={styles.Container}>
+    <Text style={styles.ContainerText}>
+            <Text style={styles.TextEng}>eng</Text>/ara
+    </Text>
       <View style={styles.Image}>
           <Image
           style={styles.img}
-          source={require('./img/2021-12-13_14-09-36.png')}
+          source={require('./img/image1.png')}
           />
-          <Pressable style={styles.button}>
+        </View>
+        <View style={styles.Button}>
+        <Pressable style={styles.button} onPress={() => LoadingLogIn()}>
           <Text style={styles.text}>Log in</Text>
           </Pressable>
 
-          <Pressable style={styles.button}>
+          <Pressable style={styles.button} onPress={() => LoadingSignIn()}>
           <Text style={styles.text}>Sign Up</Text>
           </Pressable>
 
           <Pressable style={styles.button}>
           <Text style={styles.text}>Continue as a guest</Text>
-          </Pressable>
+          </Pressable>  
         </View>  
     </View>
     )
 }
-
 
 
 const styles = StyleSheet.create({
@@ -39,24 +50,39 @@ const styles = StyleSheet.create({
      width: '100%',
      margin: "auto"
     },
+    ContainerText: {
+      position:"absolute",
+      right: 10,
+      top:10,
+      color: "black"
+    },
+    TextEng: {
+      fontWeight:"bold"
+    },
     Image: {
       position:'absolute',
-      top:180,
-      left:50
+      top:100,
+      left:70
     },
      img: {
        width:300,
-       height:200,
+       height:230,
+     },
+     Button: {
+       position: "absolute",
+       top: 380,
+       left: 10,
+       width: 390,
      },
      button: {
-       margin:20,
       alignItems: 'center',
       justifyContent: 'center',
-      paddingVertical: 12,
+      paddingVertical: 17,
       paddingHorizontal: 32,
-      borderRadius: 5,
+      borderRadius: 30,
       elevation: 3,
       backgroundColor: 'grey',
+      marginTop: 30
      },
      text: {
       fontSize: 16,

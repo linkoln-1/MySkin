@@ -15,16 +15,18 @@ export default function HomeScreen({navigation}) {
     return(
     <View style={styles.Container}>
           <Text style={styles.ContainerText}>
-            eng/ara
+            <Text style={styles.TextEng}>eng</Text>/ara
           </Text>
       <View style={styles.Image}>
           <Image
             style={styles.img}
-            source={require('./img/2021-12-13_14-09-36.png')}
+            source={require('./img/image1.png')}
           />
-            <Pressable style={styles.button} onPress={() => LoadPage()}>
+      </View>
+      <View style={styles.Button}>
+      <Pressable style={styles.button} onPress={() => LoadPage()}>
                <Text style={styles.text}>Enter</Text>
-            </Pressable>
+            </Pressable>  
       </View>   
     </View>
     )
@@ -40,26 +42,33 @@ const styles = StyleSheet.create({
     ContainerText: {
       position:"absolute",
       right: 10,
-      top:30,
-      fontWeight: 'bold',
+      top:10,
       color: "black"
+    },
+    TextEng: {
+      fontWeight:"bold"
     },
     Image: {
       position:'absolute',
-      top:180,
-      left:50
+      top:100,
+      left:70
     },
      img: {
        width:300,
-       height:200,
+       height:230,
+     },
+     Button: {
+       position: "absolute",
+       top: 380,
+       left: 10,
+       width: 390,
      },
      button: {
-       marginTop:40,
       alignItems: 'center',
       justifyContent: 'center',
-      paddingVertical: 12,
+      paddingVertical: 17,
       paddingHorizontal: 32,
-      borderRadius: 5,
+      borderRadius: 30,
       elevation: 3,
       backgroundColor: 'grey',
      },
