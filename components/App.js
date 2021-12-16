@@ -1,46 +1,123 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './HomeScreen';
-import HomePageOption  from "./HomePageOption";
-import LogIn from "./LogIn";
-import SignIn from "./SignIn";
+import HomePageOption from './HomePageOption';
+import ContinueAsAguest from './ContinueAsAguest';
+import {Image, View} from 'react-native';
+import Profile from './Profile';
+import Message from './Message';
+import Feed from './Feed';
 
-
-export default function App() {
+const App = () => {
+  const Tab = createBottomTabNavigator();
   const Stack = createStackNavigator();
 
+  const StartScren = () => (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {elevation: 0},
+        cardStyle: {backgroundColor: '#fff'},
+      }}
+    >
+      <Stack.Screen
+        options={{headerMode: 'none', headerShown: false}}
+        name="StartScreen"
+        component={HomeScreen}
+      />
+      <Stack.Screen
+        options={{headerMode: 'none', headerShown: false}}
+        name="HomePage"
+        component={HomePageOption}
+      />
+      <Stack.Screen
+        options={{headerMode: 'none', headerShown: false}}
+        name="Guest"
+        component={ContinueAsAguest}
+      />
+    </Stack.Navigator>
+  );
   return (
-        <NavigationContainer>
-            <Stack.Navigator
-             initialRouteName="HomeScreen"
-              screenOptions={{
-              headerStyle: { elevation: 0 },
-              cardStyle: { backgroundColor: '#fff' }
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                  resizeMode="contain"
+                  style={{
+                    width: 30,
+                    height: 30,
+                  }}
+                  source={require('./assets/icons/image1.png')}
+                />
+              </View>
+            ),
           }}
-             >
-                <Stack.Screen
-                name="HomeScreen"
-                component={HomeScreen}
+          name="Home"
+          component={StartScren}
+        />
+
+        <Tab.Screen
+          options={{
+            tabBarIcon: () => (
+              <View>
+                <Image
+                  resizeMode="contain"
+                  style={{
+                    width: 25,
+                    height: 25,
+                  }}
+                  source={require('./assets/icons/icon_cabinet.png')}
                 />
-                <Stack.Screen
-                name="HomePage"
-                component={HomePageOption}
+              </View>
+            ),
+          }}
+          name="profile"
+          component={Profile}
+        />
+
+        <Tab.Screen
+          options={{
+            tabBarIcon: () => (
+              <View>
+                <Image
+                  resizeMode="contain"
+                  style={{
+                    width: 25,
+                    height: 25,
+                  }}
+                  source={require('./assets/icons/icon_chat.png')}
                 />
-                <Stack.Screen
-                name="LogIn"
-                component={LogIn}
+              </View>
+            ),
+          }}
+          name="message"
+          component={Message}
+        />
+
+        <Tab.Screen
+          options={{
+            tabBarIcon: () => (
+              <View>
+                <Image
+                  resizeMode="contain"
+                  style={{
+                    width: 25,
+                    height: 25,
+                  }}
+                  source={require('./assets/icons/icon_news.png')}
                 />
-                  <Stack.Screen
-                name="SignIn"
-                component={SignIn}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
-   
+              </View>
+            ),
+          }}
+          name="feed"
+          component={Feed}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 };
-
-
-
-
+export default App;
